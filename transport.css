@@ -70,7 +70,8 @@ p {
     margin-left: 440px;
 }
 
-.btn:focus, .btn:active {
+.btn:focus,
+.btn:active {
     outline: none !important;
     box-shadow: none !important;
 }
@@ -82,4 +83,17 @@ p {
 
 #searchButton:focus {
     outline: none;
+}
+
+div#deck-gl {
+    margin-top: 40px;
+    margin-left: 205px;
+    margin-right: 205px;
+    height: 500px;
+}
+
+div#tooltip {
+    background-color: white;
+    padding: 5px;
+    color: black;
 }
