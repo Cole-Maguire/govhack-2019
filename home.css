@@ -1,0 +1,30 @@
+body {
+    background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/4n_Ch8s0eimm1i8wy/videoblocks-world-map-polygonal-network-motion-graphics-technology-background_sn-t8tg_m_thumbnail-full08.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom center;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    margin-top: 200px;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 70px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+    margin-top: 0px;
+}
+
+#arrowButton {
+    color: white;
+    font-size: 2em;
+}
+
+#about {
+    font-family: 'Noto Sans', sans-serif;
+}
