@@ -1,5 +1,5 @@
 const { DeckGL, HexagonLayer, GeoJsonLayer } = deck;
-const KEY = '69bbd91448a04a79928312bda869d3c0'
+const KEY = '3aded2e8cf79485196f4d6844ea25549'
 const deckgl = new DeckGL({
     mapboxApiAccessToken: 'pk.eyJ1IjoiY29sZS1tYWd1aXJlIiwiYSI6ImNrMDk1YWs3YzA1NnUzYnFsczI1eWMzNDcifQ.7KGfa-CJJdG-iTfoniHObg',
     mapStyle: 'mapbox://styles/mapbox/dark-v9',
@@ -16,6 +16,7 @@ const deckgl = new DeckGL({
 });
 
 let data = null;
+let routeData = null;
 
 const OPTIONS = ['radius', 'coverage'];
 
@@ -41,6 +42,7 @@ function renderLayer() {
                 }
             })
             let content = await resp.json()
+            el.setAttribute('route', content.response[0].route_short_name)
             el.textContent = `${content.response[0].route_short_name}: ${content.response[0].route_long_name}`;
         } catch (e) {
             console.error(e)
@@ -67,24 +69,24 @@ function renderLayer() {
     const routesLayer = new GeoJsonLayer({
         layerName: 'line',
         data: 'https://opendata.arcgis.com/datasets/d5a4db7acb5a45a9a4f1bd08a3f0f0a6_2.geojson',
-        pickable: false,
+        pickable: true,
         stroked: false,
-        filled: false,
-        extruded: false,
-        lineWidthScale: 20,
-        lineWidthMaxPixels: 3,
+        filled: true,
+        visible: document.getElementById('checkRoutes').checked,
+        extruded: true,
+        lineWidthScale: 5,
         lineWidthMinPixels: 2,
-        getLineColor: [255, 255, 255, 128],
-        getRadius: 3,
+        getFillColor: [160, 160, 180, 200],
+        getLineColor: [160, 160, 180, 200],
+        getRadius: 100,
         getLineWidth: 1,
-        getElevation: 30,
+        getElevation: 300,
     })
+
     deckgl.setProps({
         layers: [routesLayer, busesLayer]
     });
 }
-
-let colors = {}
 
 const fetchData = () => {
     fetch(`https://api.at.govt.nz/v2/public/realtime/vehiclelocations`, {
@@ -107,4 +109,4 @@ const fetchData = () => {
         });
 }
 setInterval(fetchData, 3000)
-let response = fetchData()
+fetchData()
