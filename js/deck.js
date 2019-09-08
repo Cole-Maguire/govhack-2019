@@ -34,8 +34,9 @@ function renderLayer() {
         return p.other.vehicle.occupancy_status
     }
 
-    async function setTooltip(info, dataIn) {
+    async function setTooltip(info) {
         const el = document.getElementById('tooltip');
+    
         try {
             el.textContent = '...'
             el.style.display = 'block';
@@ -53,13 +54,17 @@ function renderLayer() {
         }
     }
 
+    function one(p){
+        return 1
+    }
+
     const hexagonLayer = new HexagonLayer({
         id: 'heatmap',
         colorRange: COLOR_RANGE,
-        getColorWeight: lookupPoint,
+        getColorWeight:  document.getElementById("checkCongestion").checked? lookupPoint: one,
         data,
         pickable: true,
-        onHover: async info => await setTooltip(info, data),
+        onHover: async info => await setTooltip(info),
         extruded: false,
         getPosition: d => d.COORDINATES,
         opacity: 1,
