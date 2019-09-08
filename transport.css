@@ -61,7 +61,7 @@ p {
     color: grey;
 }
 
-#congestionLabel {
+label {
     margin: 0;
     font-size: 18px;
 }
@@ -93,6 +93,7 @@ div#deck-gl {
 }
 
 div#tooltip {
+    z-index: 2;
     background-color: white;
     padding: 5px;
     color: black;
